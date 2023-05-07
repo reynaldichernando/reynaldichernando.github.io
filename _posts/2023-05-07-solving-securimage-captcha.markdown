@@ -5,7 +5,7 @@ date:   2023-05-07 13:23:27 +0700
 categories: blog
 author: Reynaldi Chernando
 ---
-CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) is a tool used to differentiate between real users and bots or automated software, commonly found when submitting a form in a website. [Securimage](https://github.com/dapphp/securimage){:target="_blank"} (aka PHP Captcha) is one of them, it was one of the popular captcha library for PHP. I first encountered it while using the [JNE website](https://www.jne.co.id/id/beranda){:target="_blank"} and felt like it was a challenge for me on how to solve the captcha.
+CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) is a tool used to differentiate between real users and bots or automated software, commonly found when submitting a form in a website. [Securimage](https://github.com/dapphp/securimage){:target="_blank"} (aka PHP Captcha) is one of them, it was one of the popular captcha library for PHP. I first encountered it while using the [JNE website](https://www.jne.co.id/id/beranda){:target="_blank"} and felt like it was a challenge for me on how to solve the captcha programmatically.
 
 ![Securimage Captcha](https://imgur.com/eGYhcvF.jpeg)
 
