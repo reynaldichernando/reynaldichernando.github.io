@@ -135,8 +135,8 @@ At this day and age, using these types of captcha probably won’t work anymore.
 Thank you for reading!
 
 All the code used for this project are available in these repositories:
-- [https://github.com/reynaldichernando/securimage](https://github.com/reynaldichernando/securimage){:target="_blank"}
-- [https://github.com/reynaldichernando/securimage-dataset](https://github.com/reynaldichernando/securimage-dataset){:target="_blank"}
-- [https://github.com/reynaldichernando/securimage-solver](https://github.com/reynaldichernando/securimage-solver){:target="_blank"}
-- [https://github.com/reynaldichernando/parseq](https://github.com/reynaldichernando/parseq){:target="_blank"}
-- [https://github.com/reynaldichernando/jne-api](https://github.com/reynaldichernando/jne-api){:target="_blank"}
+- [reynaldichernando/securimage](https://github.com/reynaldichernando/securimage){:target="_blank"}
+- [reynaldichernando/securimage-dataset](https://github.com/reynaldichernando/securimage-dataset){:target="_blank"}
+- [reynaldichernando/securimage-solver](https://github.com/reynaldichernando/securimage-solver){:target="_blank"}
+- [reynaldichernando/parseq](https://github.com/reynaldichernando/parseq){:target="_blank"}
+- [reynaldichernando/jne-api](https://github.com/reynaldichernando/jne-api){:target="_blank"}
