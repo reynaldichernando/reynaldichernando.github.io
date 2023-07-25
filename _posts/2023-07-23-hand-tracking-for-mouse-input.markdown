@@ -35,7 +35,7 @@ Starting with this, we can use the python version of MediaPipe, and have [OpenCV
 
 *Python version is super laggy, something to do with OpenCV*
 
-After some researching, turns out it was because it has something to do with the OpenCV, related to how cv2.waitKey() works. I still haven’t found out the fix yet, so I suppose we’re skipping python altogether to save time and sanity.
+After some researching, turns out it was because it has something to do with the OpenCV, related to how the `waitKey` function works. I still haven’t found out the fix yet, so I suppose we’re skipping python altogether to save time and sanity.
 
 ## A Stupid Idea
 
@@ -49,7 +49,7 @@ During research for using MediaPipe, I found out about the web version of the li
 
 ## Simulating the Mouse
 
-For the MediaPipe frontend to communicate with the Python backend, I need to have it work through some sort of method. I thought of 3 ways, which are simple HTTP request, [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), and [gRPC](https://grpc.io){:target="_blank"} with bidirectional streaming. The HTTP request is immediately out of the picture, considering I need the latency to be as low as possible. This left me with 2 options that are both for streaming data. I'm not too familiar with gRPC, so I suppose I will just use WebSocket.
+For the MediaPipe frontend to communicate with the Python backend, I need to have it work through some sort of method. I thought of 3 ways, which are simple HTTP request, [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), and [gRPC](https://grpc.io){:target="_blank"} with streaming. The HTTP request is immediately out of the picture, considering I need the latency to be as low as possible. This left me with 2 options that are both for streaming data. I decided to use WebSocket because it allows for realtime communication between the client and the server, which is needed for our use case, plus I'm not too familiar with gRPC.
 
 I setup a simple WebSocket server in python which will accept a JSON string message containing the x and y coordinate to move the mouse to. I then just have to connect the coordinates of one of the finger to be sent to the backend, in this case I’ll be using the thumb tip. And it worked! Surprisingly very well even, however it feels very wrong though, controlling it using the browser. In any case, the latency is not that noticeable, I suppose there might be some inefficiency. But for now let’s just ignore that.
 
@@ -67,13 +67,13 @@ Next is the clicking logic. To detect a click, we need to detect a pinch action,
 
 This solution works fine, however, there is a problem if we were to move the hand closer to the camera. Since we are moving a 3D object in 2D space, by moving the hand closer to the camera, the distance between the finger tips also gets larger.
 
-![Distance between finger tip, far vs close to the screen](https://imgur.com/iipvLpX.jpeg)
+![Distance between finger tip, far vs close to the screen](https://i.imgur.com/qAnCM7Q.jpeg)
 
 *Distance between finger tip, far vs close to the screen*
 
 To solve this issue, we can implement a workaround to use a relative distance instead. By calculating the distance between the finger tips and the respective knuckles, where the distance will get larger the closer the hand is to the camera, we can compare this distance to the distance between the tip. This way we get a proper finger tips distance regardless if the hand is closer or far away from the camera.
 
-![Calculating relative distance between finger tips](https://imgur.com/6hwT1b9.jpeg)
+![Calculating relative distance between finger tips](https://i.imgur.com/6hwT1b9.jpeg)
 
 *Calculating relative distance between finger tips*
 
@@ -154,7 +154,7 @@ For the angle, we can simply pick 2 points from the hand landmark, and by using 
 
 *Example for Y axis, using the angle of the finger, along with the distance to screen, we can find the cursor Y value*
 
-![The Formula](https://imgur.com/BwT0mAR.jpeg)
+![The Formula](https://i.imgur.com/BwT0mAR.jpeg)
 
 *The Formula*
 
@@ -211,5 +211,5 @@ All in all, I would say the down facing mode works quite reliably, while the fro
 Some notes
 
 - To minimize some of the drift when pinching, resting the thumb on the side of the middle finger tip can help.
-- For the angle calculation in front facing mode, especially vertical angle, I added an offset, due to the camera being placed at the top of the screen, this is to correct the cursor being lower than where we are pointing.
+- For the angle calculation in front facing mode, especially vertical angle, I added an offset, due to the camera being placed at the top of the screen, this is to correct the cursor being lower than where the finger is pointing.
 - I have yet to find a way to make the Tauri app work in background, so minimizing the window will stop the cursor. So, to change window, just click the desired window without minimizing the Tauri window.
