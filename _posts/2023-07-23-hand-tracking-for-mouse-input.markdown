@@ -51,7 +51,7 @@ During research for using MediaPipe, I found out about the web version of the li
 
 For the MediaPipe frontend to communicate with the Python backend, I need to have it work through some sort of method. I thought of 3 ways, which are simple HTTP request, [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), and [gRPC](https://grpc.io){:target="_blank"} with streaming. The HTTP request is immediately out of the picture, considering I need the latency to be as low as possible. This left me with 2 options that are both for streaming data. I decided to use WebSocket because it allows for realtime communication between the client and the server, which is needed for our use case, plus I'm not too familiar with gRPC.
 
-I setup a simple WebSocket server in python which will accept a JSON string message containing the x and y coordinate to move the mouse to. I then just have to connect the coordinates of one of the finger to be sent to the backend, in this case I’ll be using the thumb tip. And it worked! Surprisingly very well even, however it feels very wrong though, controlling it using the browser. In any case, the latency is not that noticeable, I suppose there might be some inefficiency. But for now let’s just ignore that.
+I setup a simple WebSocket server in python which will accept a JSON string message containing the x and y coordinate to move the mouse to. I then just have to connect the coordinates of one of the finger to be sent to the backend, in this case I’ll be using the thumb tip. 
 
 ![WebSocket server receiving information to control the mouse](https://i.imgur.com/IVFKzqI.jpeg)
 
@@ -63,13 +63,15 @@ I setup a simple WebSocket server in python which will accept a JSON string mess
 
 *Using a web browser to control the mouse*
 
+And it worked! Surprisingly very well even, however it feels very wrong though, controlling it using the browser. In any case, the latency is not that noticeable, I suppose there might be some inefficiency. But for now let’s just ignore that.
+
 Next is the clicking logic. To detect a click, we need to detect a pinch action, between the thumb and index finger. To do this, we just have to measure the distance between the thumb tip and index finger tip, this is using [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance){:target="_blank"}. If it is less than a certain threshold, we will invoke a mouse down event, and if it is greater than the threshold, we will invoke the mouse up event. Notice that we are using mouse down and up instead of click, this is to support dragging action.
 
 This solution works fine, however, there is a problem if we were to move the hand closer to the camera. Since we are moving a 3D object in 2D space, by moving the hand closer to the camera, the distance between the finger tips also gets larger.
 
-![Distance between finger tip, far vs close to the screen](https://i.imgur.com/qAnCM7Q.jpeg)
+![Distance between finger tip, far vs close to the camera](https://i.imgur.com/qAnCM7Q.jpeg)
 
-*Distance between finger tip, far vs close to the screen*
+*Distance between finger tip, far vs close to the camera*
 
 To solve this issue, we can implement a workaround to use a relative distance instead. By calculating the distance between the finger tips and the respective knuckles, where the distance will get larger the closer the hand is to the camera, we can compare this distance to the distance between the tip. This way we get a proper finger tips distance regardless if the hand is closer or far away from the camera.
 
