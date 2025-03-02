@@ -127,8 +127,6 @@ I will spare you the detail, here are the steps:
 
 And it works! Latency is not too bad, at around 400ms, and the response is nicely formatted using JSON.
 
-You can find the [online demo](https://jne-api-demo-4kwyrsebtq-as.a.run.app/apidocs){:target="_blank"} here, I have setup a simple Swagger documentation for the API. Note that it might take a while to load because of the cold start.
-
 ## Conclusion
 At this day and age, using these types of captcha probably won’t work anymore. If you are still using it, you may want to consider more advanced ones like Google reCaptchaV3 or Cloudflare Turnstile. Just don’t use the ones like [this](https://www.reddit.com/r/softwaregore/comments/rtgrw8/microsoft_captcha_ive_been_trying_to_create_an/?utm_source=share&utm_medium=web2x&context=3){:target="_blank"}.
 
