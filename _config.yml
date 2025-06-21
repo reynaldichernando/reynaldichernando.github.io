@@ -21,6 +21,7 @@ minima:
       icon: globe
       fa_namespace: solid
       url: "https://corsfix.com"
+      no_rel: true
 
 remote_theme: jekyll/minima
 plugins:
